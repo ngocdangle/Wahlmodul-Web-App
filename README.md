@@ -31,23 +31,14 @@ Lehrende werden bei der Erstellung von Angeboten unterstützt.
 - Figma
 - GitHub
 
-## Team 
-(zb)
-| Name | Aufgabe |
-|--------|--------|
-| Person 1 | Recherche & Modulhandbuch |
-| Person 2 | UI/UX & Figma |
-| Person 3 | Frontend |
-| Person 4 | Filterlogik |
-| Person 5 | Dokumentation |
-
-## Installation
-
-Repository klonen:
-
-git clone ...
-
-Anschließend index.html öffnen.
+## Team
+| Name | Recherche | Umsetzung |
+|--------|--------|--------|
+| Julia P. | Modulhandbuch & Anforderungen | Studierende Web-App |
+| Ngoc D. | Modulhandbuch & Anforderungen | Studierende Web-App |
+| Nilgün K. | Modulhandbuch & Anforderungen | Studierende Mobile App |
+| Anh N. | Recherche Lehrendenprozess | Lehrende Web-App |
+| Yazgül K. | Recherche Lehrendenprozess | Lehrende Web-App |
 
 ## Screenshots
 
