@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WPM Lehrende</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+
+  <img
+    src="../assets/logo/Hochschule_Düsseldorf_logo.png"
+    alt="HSD Logo"
+    class="logo"
+  >
+
+  <h2>
+    Wahlpflichtmodule<br>
+    Anbieter Hub
+  </h2>
+
+</div>
+
+<div class="icons">
+
+  <img
+    src="../assets/lehrende/Search.svg"
+    alt="Suche"
+    class="icon"
+  >
+
+  <img
+    src="../assets/lehrende/User.svg"
+    alt="Profil"
+    class="icon"
+  >
+
+  <img
+    src="../assets/lehrende/Settings.svg"
+    alt="Einstellungen"
+    class="icon">
+
+</div>
+</header>
+
+<main class="wrapper">
+
+  <section class="title-box">
+    <h1>Angebot erstellen</h1>
+  </section>
+
+  <nav class="steps">
+    <button class="step active">Zuordnung</button>
+    <img src="../assets/lehrende/arrow.svg" alt="Pfeil" class="arrow">
+    <button class="step">Beschreibung</button>
+    <img src="../assets/lehrende/arrow.svg" alt="Pfeil" class="arrow">
+    <button class="step">Wahlpflichtmodule</button>
+    <img src="../assets/lehrende/arrow.svg" alt="Pfeil" class="arrow">
+    <button class="step">Organisation</button>
+    <img src="../assets/lehrende/arrow.svg" alt="Pfeil" class="arrow">
+    <button class="step">Vorschau</button>
+  </nav>
+
+  <section class="content-card">
+    <div class="top-actions">
+      <button class="secondary">Vorschau</button>
+      <button class="save">Änderungen speichern</button>
+    </div>
+
+    <div class="section-title">Angebotstyp</div>
+
+    <div class="option-card" onclick="selectOption(this)">
+      <div class="radio"></div>
+      <div>
+        <h3>Projekt</h3>
+        <p>Wenn ein Projekt angeboten wird, muss es nicht zu einem Modul gehören.</p>
+      </div>
+    </div>
+
+    <div class="option-card" onclick="selectOption(this)">
+      <div class="radio"></div>
+      <div>
+        <h3>Klassische Lehrveranstaltung</h3>
+        <p>Wenn eine klassische Lehrveranstaltung mit expliziter Wissensvermittlung angeboten wird, ist die Zuordnung zu einem Modul erforderlich.</p>
+      </div>
+    </div>
+
+    <button class="next">Weiter</button>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
