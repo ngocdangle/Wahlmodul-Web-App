@@ -7,86 +7,302 @@
   </head>
 
   <body>
-    <div class="container">
-      <header>
-        <img src="../assets/logo/Hochschule_Düsseldorf_logo.png" class="logo"/>
-        <h1>Bewerbung für Wahlangebote</h1>
-        <h2>Kurs Bewerbungsportal</h2>
-      </header>
+    <header>
+      <img src="../assets/logo/Hochschule_Düsseldorf_logo.png" class="logo"/>
+      <a href="#" class="lang-switch">English site</a>
+    </header>
 
-      <!--Bewebungsbereich-->
-      <div class="bereich">
-        <button class="bereich_header">
-          <span>Meine Bewebungen</span>
-          <spam class="pfeil">▼</spam>
-        </button>
+    <main class="container">
+        <!-- Bewerbungsphase Haupttitel -->
+        <h1 class="title" id="main-portal-title">Bewerbungen für Wahlangebote</h1>
+        
+        <!-- ===================================================================
+             ANSICHT 1 & 4: MEINE BEWERBUNGEN (ACCORDION)
+             =================================================================== -->
+        <div class="accordion-item open" id="my-applications-accordion">
+            <div class="accordion-header" id="my-apps-header">
+                Meine Bewerbungen
+            </div>
+            <div class="accordion-content" id="my-applications-list-container">
+                <p class="empty-text" id="empty-apps-text">keine Bewerbung</p>
+                <ul class="drag-list hidden" id="apps-drag-list">
+                    <!-- Dynamische Drag & Drop Elemente werden hier injiziert -->
+                </ul>
+            </div>
+        </div>
 
-        <div class="bereich_kontext">
-          <div class="wahlkatalogA">
-            <button class="bereich_header">
-              <span>Wahlkataloge A/C</span>
-              <spam class="pfeil">▼</spam>
-            </button>
-            <div class="bewebungen">
-              <span>Interaktive Systeme</span>
-              <div class="action">
-                <button>≡</button>
-                <button>X</button>
-              </div>
+        <!-- ===================================================================
+             HAUPTSEITE / WAHLKATALOGE OVERVIEW
+             =================================================================== -->
+        <div id="view-main">
+            <div class="accordion-item open">
+                <div class="accordion-header" id="catalog-main-header">
+                    Wahlkataloge
+                </div>
+                <div class="accordion-content">
+                    <div class="catalog-grid">
+                        <!-- Informatikprojekt -->
+                        <div class="catalog-card">
+                            <div class="card-img-placeholder"></div>
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="card-title">Informatikprojekt 1/2</h3>
+                                    <p class="card-subtitle">Modulauswahl</p>
+                                    <p class="card-desc">Verschiedene Projekte für 2. und 3. Semester.</p>
+                                </div>
+                                <button class="btn-red" data-catalog="Informatikprojekt A/C">Zu den Kursen</button>
+                            </div>
+                        </div>
+                        <!-- Medienprojekt -->
+                        <div class="catalog-card">
+                            <div class="card-img-placeholder"></div>
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="card-title">Medienprojekte 1/2</h3>
+                                    <p class="card-subtitle">Modulauswahl</p>
+                                    <p class="card-desc">Verschiedene Projekte für 4. und 5. Semester.</p>
+                                </div>
+                                <button class="btn-red" data-catalog="Medienprojekte">Zu den Kursen</button>
+                            </div>
+                        </div>
+                        <!-- Vertiefung A/C -->
+                        <div class="catalog-card">
+                            <div class="card-img-placeholder"></div>
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="card-title">Vertiefung A/C</h3>
+                                    <p class="card-subtitle">Modulauswahl</p>
+                                    <p class="card-desc">Wahlkatalog für Schwerpunkt-Vertiefungen.</p>
+                                </div>
+                                <button class="btn-red" data-catalog="Wahlkatalog A/C">Zu den Kursen</button>
+                            </div>
+                        </div>
+                        <!-- Vertiefung B/C -->
+                        <div class="catalog-card">
+                            <div class="card-img-placeholder"></div>
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="card-title">Vertiefung B/D</h3>
+                                    <p class="card-subtitle">Modulauswahl</p>
+                                    <p class="card-desc">Wahlkatalog für alternative Vertiefungen.</p>
+                                </div>
+                                <button class="btn-red" data-catalog="Wahlkatalog B/D">Zu den Kursen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================================
+             ANSICHT 2: KATALOG-SEITE MIT NESTED DETAILS
+             =================================================================== -->
+        <div id="view-catalog" class="hidden">
+            <div class="catalog-subheader">
+                <h1 class="title-large-red">Wahlkataloge</h1>
+                <div class="filter-container">
+                    <button class="filter-btn" id="filter-toggle-btn">⚙ Filter</button>
+                    <div class="filter-dropdown hidden" id="filter-dropdown-menu">
+                        <label><input type="checkbox" value="SoSe" checked> SoSe</label>
+                        <label><input type="checkbox" value="WiSe" checked> WiSe</label>
+                        <label><input type="checkbox" value="Klausur" checked> Klausur</label>
+                        <label><input type="checkbox" value="Projekt" checked> Projekt</label>
+                        <label><input type="checkbox" value="Portfolio" checked> Portfolio</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1. KATALOG: Informatikprojekt 1/2 -->
+            <div class="accordion-item" id="accordion-Informatikprojekt-A-C">
+                <div class="accordion-header" onclick="toggleAccordion(this)">Informatikprojekt 1/2</div>
+                <div class="accordion-content">
+                    <div class="courses-row">
+                        <div class="course-card" data-tags="SoSe,Projekt">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>Informatikprojekt: Web-Apps</h4>
+                                <p class="course-short-text">Entwicklung moderner Fullstack-Webanwendungen im Team mit Node.js und React.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 15</div>
+                                    <div class="tags"><span class="tag">SoSe</span><span class="tag">Projekt</span></div>
+                                    <button class="btn-red full-width btn-detail-trigger" data-course="Informatikprojekt: Web-Apps">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-card" data-tags="WiSe,Projekt">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>Informatikprojekt: Mobile Security</h4>
+                                <p class="course-short-text">Analyse von Sicherheitslücken in Android- und iOS-Applikationen.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 12</div>
+                                    <div class="tags"><span class="tag">WiSe</span><span class="tag">Projekt</span></div>
+                                    <button class="btn-red full-width btn-detail-trigger" data-course="Informatikprojekt: Mobile Security">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container für Detailansicht innerhalb dieses Katalogs -->
+                    <div class="detail-holder"></div>
+                </div>
+            </div>
+
+            <!-- 2. KATALOG: Vertiefung A/C -->
+            <div class="accordion-item" id="accordion-Wahlkatalog-A-C">
+                <div class="accordion-header" onclick="toggleAccordion(this)">Verliefung A/C</div>
+                <div class="accordion-content">
+                    <div class="courses-row">
+                        <div class="course-card" data-tags="SoSe,Klausur,Projekt">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>Interaktive Systeme</h4>
+                                <p class="course-short-text">In einem Mini-Projekt werden in Gruppen kleine Android-Apps (in Java oder Kotlin) erstellt.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 20</div>
+                                    <div class="tags">
+                                        <span class="tag">SoSe</span><span class="tag">Klausur</span><span class="tag">Projekt</span>
+                                    </div>
+                                    <button class="btn-red full-width btn-detail-trigger" data-course="Interaktive Systeme">Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-card" data-tags="SoSe,Klausur">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>Einführung Künstliche Intelligenz</h4>
+                                <p class="course-short-text">Grundlagen des maschinellen Lernens und neuronale Netze verständlich erklärt.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 20</div>
+                                    <div class="tags">
+                                        <span class="tag">SoSe</span><span class="tag">Klausur</span>
+                                    </div>
+                                    <button class="btn-red full-width btn-detail-trigger" data-course="Einführung Künstliche Intelligenz">Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-card unavailable" data-tags="WiSe,Portfolio">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>E-Business</h4>
+                                <p class="course-short-text">Wahlmodul zum Thema E-Commerce, digitale Geschäftsmodelle und Web-Plattformen.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 20</div>
+                                    <div class="tags">
+                                        <span class="tag">WiSe</span><span class="tag">Portfolio</span>
+                                    </div>
+                                    <p class="status-msg">Das Wahlmodul ist in diesem Semester nicht verfügbar.</p>
+                                    <button class="btn-red full-width disabled-btn" disabled>Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container für Detailansicht innerhalb dieses Katalogs -->
+                    <div class="detail-holder"></div>
+                </div>
+            </div>
+
+            <!-- 3. KATALOG: Vertiefung B/D -->
+            <div class="accordion-item" id="accordion-Wahlkatalog-B-D">
+                <div class="accordion-header" onclick="toggleAccordion(this)">Vertiefung B/D</div>
+                <div class="accordion-content">
+                    <div class="courses-row">
+                        <div class="course-card" data-tags="WiSe,Klausur">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>Datenbanksysteme II</h4>
+                                <p class="course-short-text">Optimierung, Skalierung und NoSQL-Architekturen für große Datenmengen.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 25</div>
+                                    <div class="tags"><span class="tag">WiSe</span><span class="tag">Klausur</span></div>
+                                    <button class="btn-red full-width btn-detail-trigger" data-course="Datenbanksysteme II">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container für Detailansicht innerhalb dieses Katalogs -->
+                    <div class="detail-holder"></div>
+                </div>
+            </div>
+
+            <!-- 4. KATALOG: Medienprojekte -->
+            <div class="accordion-item" id="accordion-Medienprojekte">
+                <div class="accordion-header" onclick="toggleAccordion(this)">Medienprojekte</div>
+                <div class="accordion-content">
+                    <div class="courses-row">
+                        <div class="course-card" data-tags="SoSe,Projekt,Portfolio">
+                            <div class="card-img-placeholder" style="height:100px;"></div>
+                            <div class="course-card-body">
+                                <h4>Medienprojekt: Virtual Reality</h4>
+                                <p class="course-short-text">Konzeption und Umsetzung einer immersiven 3D-Lernumgebung mit Unity.</p>
+                                <div>
+                                    <div class="course-info-text">Plätze: 👥 0 / 10</div>
+                                    <div class="tags"><span class="tag">SoSe</span><span class="tag">Projekt</span><span class="tag">Portfolio</span></div>
+                                    <button class="btn-red full-width btn-detail-trigger" data-course="Medienprojekt: Virtual Reality">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container für Detailansicht innerhalb dieses Katalogs -->
+                    <div class="detail-holder"></div>
+                </div>
+            </div>
+
+            <button class="btn-outline back-main-btn" id="btn-back-to-main">Zurück zur Modulübersicht</button>
+        </div>
+    </main>
+    <!-- Globales Detail-Template (wird via JS in den jeweiligen Katalog verschoben) -->
+    <div class="detail-view-container hidden" id="course-detail-view">
+      <button class="close-detail-btn" id="btn-close-details">✕</button>
+      
+      <div class="detail-left">
+        <div class="card-img-placeholder" style="height:120px; margin-bottom:10px;"></div>
+        <div class="tags" id="detail-tags-container"></div>
+        <h3 id="detail-course-name">Kursname</h3>
+        <p class="prof-name">Prof. Dr.-Ing. M.Sc. Markus Dahm</p>
+        
+        <p class="running-text" id="detail-course-short-desc">Kursbeschreibung...</p>
+        
+        <div class="meta-data-list">
+          <strong>Studiengänge:</strong> BMI, BMT, DAISY<br>
+          <strong>Termine & Ort:</strong> Immer Donnerstags, 04.1.009<br>
+          <strong>Erstes Treffen:</strong> 07.04.2026<br>
+          <strong>Plätze:</strong> 👥 Keine Beschränkung
+        </div>
+      </div>
+
+      <div class="detail-right">
+        <div class="tabs-nav">
+          <button class="tab-btn active" id="tab-btn-beschreibung">Beschreibung</button>
+          <button class="tab-btn" id="tab-btn-bewerben">Bewerben</button>
+        </div>
+
+          <div class="tab-content active" id="tab-content-beschreibung">
+            <h4>Themen der Vorlesung</h4>
+            <ul class="topics-list">
+              <li>Programmierung von GUIs - Konzepte und JavaFX</li>
+              <li>Einführung in Kotlin</li>
+              <li>Einführung in die Programmierung von Android-Apps in Kotlin</li>
+              <li>Display-Technologien</li>
+              <li>Input-Technologien</li>
+              <li>Usability Engineering</li>
+            </ul>
+            <h4>Mini-Projekt: Android-App konzipieren und implementieren</h4>
+            <p class="project-desc">Der praktische Anteil wird in Form eines Mini-Projekts (2,5 CP) durchgeführt.<br><br>Generelles Thema: App zur Optimierung des Wahlprozesses.</p>
+          </div>
+
+          <div class="tab-content" id="tab-content-bewerben">
+            <label class="motivation-label">Motivationsschreiben</label>
+            <textarea id="motivation-text" placeholder="Schreiben Sie hier Ihre Motivation für diesen Kurs..."></textarea>
+            <div class="form-actions">
+              <button class="btn-outline" id="btn-save-motivation">Speichern</button>
+              <button class="btn-red pad-large" id="btn-submit-application">Absenden</button>
             </div>
           </div>
-        </div>
       </div>
-
-      <!--Wahlkatalogsbereich-->
-      <div class="bereich">
-        <button class="bereich_header">
-          <span>Wahlkataloge</span>
-          <spam class="pfeil">▼</spam>
-        </button>
-
-        <div class="bereich_kontext">
-          <section class="karten">
-            <div class="card">
-              <img/>
-              <div class="card-content">
-                <h3>Informatikprojekt 1/2</h3>
-                <p class="subtitle">Modulauswahl</p>
-                <p class="description">
-                  Verschiedene Projekte für 2. und 3. Semester.
-                </p>
-                <a href="wahlkataloge.html" class="btn">Zu den Kursen</a>
-              </div>
-              <div class="card-content">
-                <h3>Wahlkatalog A/C</h3>
-                <p class="subtitle">Modulauswahl</p>
-                <p class="description">
-                  Vertiefung SoSe
-                </p>
-                <button>Zu den Kursen</button>
-              </div>
-              <div class="card-content">
-                <h3>Wahlkatalog B/D</h3>
-                <p class="subtitle">Modulauswahl</p>
-                <p class="description">
-                    Vertiefung WiSe
-                </p>
-                <button>Zu den Kursen</button>
-              </div>
-              <div class="card-content">
-                <h3>Medienprojekt A/B</h3>
-                <p class="subtitle">Modulauswahl</p>
-                <p class="description">
-                  Verschiedene Projekte für 4. und 5. Semester.
-                </p>
-                <button>Zu den Kursen</button>
-              </div>
-            </div>
-          </section>
-        </div>
-
-      </div>
-
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

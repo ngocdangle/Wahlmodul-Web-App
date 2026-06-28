@@ -1,0 +1,538 @@
+:root {
+    --hsd-red: #e6001a;
+    --hsd-light-red: #fff0f1;
+    --bg-gray: #f5f5f5;
+    --text-dark: #333;
+    --border-color: #ddd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: var(--text-dark);
+    padding-bottom: 50px;
+}
+
+/* Header-Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.lang-switch {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Container & Allgemeines */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1.title {
+    color: var(--hsd-red);
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* Der gewünschte große rote Titel für die Wahlkatalog-Seite */
+.title-large-red {
+    color: var(--hsd-red);
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+h2.subtitle {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.btn-red {
+    background-color: var(--hsd-red);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.btn-red:hover {
+    background-color: #b80014;
+}
+
+.btn-outline {
+    background: white;
+    color: var(--hsd-red);
+    border: 1px solid var(--hsd-red);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Accordion-Bereiche */
+.accordion-item {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background: var(--bg-gray);
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f0f0;
+}
+
+.accordion-header::after {
+    content: '▼';
+    font-size: 12px;
+    transition: transform 0.2s;
+}
+
+.accordion-item.open .accordion-header::after {
+    content: '▲';
+}
+
+.accordion-content {
+    display: none;
+    padding: 20px;
+    background: white;
+}
+
+.accordion-item.open .accordion-content {
+    display: block;
+}
+
+.empty-text {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}
+/* Blendet andere Kataloge aus, wenn ein Kurs im Detail angeschaut wird */
+.accordion-item.hidden-by-detail {
+    display: none !important;
+}
+
+.accordion-item.detail-active > .accordion-content > .courses-row {
+    display: none !important;
+}
+
+.courses-row.hidden-by-detail {
+    display: none !important;
+}
+
+.course-card.hidden-by-detail {
+    display: none !important;
+}
+
+/* Der ausgewählte Kurs wird nicht als Karte angezeigt, wenn die Detailansicht offen ist */
+.course-card.active-detail-card {
+    display: none !important;
+}
+
+/* Grid für Hauptseite */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.catalog-card {
+    background: var(--hsd-light-red);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fae1e3;
+}
+
+.card-img-placeholder {
+    height: 180px;
+    background: linear-gradient(135deg, #fbc5d8, #c1e3f7, #fbe3b5);
+    position: relative;
+}
+
+.card-img-placeholder::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    background-image: radial-gradient(circle at 20% 30%, #fff 10%, transparent 20%), 
+                      linear-gradient(45deg, transparent 40%, #fff 40%, #fff 60%, transparent 60%);
+    background-size: 40px 40px;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    color: #b81422;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.card-desc {
+    font-size: 13px;
+    color: var(--hsd-red);
+    margin-bottom: 20px;
+}
+
+/* --- ANSICHT 2: KATALOG-SEITE --- */
+.catalog-subheader {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-container {
+    position: relative;
+}
+
+.filter-btn {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.filter-dropdown {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 135px;
+}
+
+.filter-dropdown label {
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.courses-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.course-card {
+    min-width: 300px;
+    width: 32%;
+    background: var(--hsd-light-red);
+    border-radius: 8px;
+    border: 1px solid #f5d1d4;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card h4 {
+    color: #b81422; 
+    margin-bottom: 5px;
+}
+
+.course-short-text {
+    font-size: 12px; 
+    color: #555; 
+    margin-bottom: 10px;
+}
+
+.course-card.unavailable {
+    background: #f9f9f9;
+    border-color: #e0e0e0;
+    opacity: 0.7;
+}
+
+.course-card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.tags {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    border: 1px solid var(--hsd-red);
+    color: var(--hsd-red);
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    background: white;
+}
+
+.course-card.unavailable .tag {
+    border-color: #888;
+    color: #888;
+}
+
+.course-info-text {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.status-msg {
+    font-size: 11px; 
+    color: #666; 
+    margin-bottom: 5px;
+}
+
+.disabled-btn {
+    background: #888 !important;
+}
+
+/* --- ANSICHT 3: DETAILS --- */
+.detail-holder {
+    margin-top: 15px;
+}
+
+.detail-view-container {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px dashed #e6001a;
+    padding: 20px;
+    border-radius: 6px;
+    position: relative;
+    margin-top: 15px;
+    clear: both;
+}
+
+.detail-left {
+    width: 40%;
+    border-right: 1px solid #eee;
+    padding-right: 15px;
+}
+
+.detail-left h3 {
+    color: #b81422; 
+    margin-bottom: 5px;
+}
+
+.prof-name {
+    font-size: 12px; 
+    color: #444; 
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.running-text {
+    font-size: 12px; 
+    margin-bottom: 10px;
+}
+
+.meta-data-list {
+    font-size: 12px; 
+    line-height: 1.6;
+}
+
+.detail-right {
+    width: 60%;
+    position: relative;
+}
+
+.tabs-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tab-btn.active {
+    border: 1px solid var(--border-color);
+    border-bottom-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: var(--hsd-red);
+    background: var(--hsd-light-red);
+}
+
+.tab-content {
+    display: none;
+    background: var(--hsd-light-red);
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.topics-list {
+    font-size: 13px; 
+    margin: 10px 0 15px 20px; 
+    line-height: 1.5;
+}
+
+.project-desc {
+    font-size: 13px; 
+    margin-top: 5px; 
+    line-height: 1.4;
+}
+
+.motivation-label {
+    color: var(--hsd-red); 
+    font-weight: bold; 
+    font-size: 14px;
+}
+
+.close-detail-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: 1px solid var(--hsd-red);
+    color: var(--hsd-red);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-top: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.pad-large {
+    padding: 10px 25px;
+}
+
+.back-main-btn {
+    margin-top: 20px;
+}
+
+/* --- DRAG & DROP --- */
+.drag-list {
+    list-style: none;
+    padding: 0;
+}
+
+.drag-item {
+    background: white;
+    border: 2px solid #3333ff; 
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+}
+
+.drag-handle {
+    font-size: 18px;
+    margin-right: 15px;
+    color: #666;
+}
+
+.drag-item-left {
+    display: flex;
+    align-items: center;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
